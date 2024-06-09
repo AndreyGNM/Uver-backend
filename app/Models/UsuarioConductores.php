@@ -17,6 +17,7 @@ class UsuarioConductores extends Model
         'cedula',
         'cuentaBancaria',
         'licencia',
+        'telefono',
     ];
 
     public function catalogoLicencias()
@@ -32,5 +33,10 @@ class UsuarioConductores extends Model
     public function viajes()
     {
         return $this->hasMany(Viajes::class, 'conductor', 'cedula');
+    }
+
+    public function usuario()
+    {
+        return $this->belongsTo(Usuarios::class, 'telefono', 'telefono');
     }
 }

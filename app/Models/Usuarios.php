@@ -23,5 +23,10 @@ class Usuarios extends Model
     public function viajes()
     {
         return $this->hasMany(Viajes::class, 'pasajero', 'telefono');
-    }                  
+    }   
+    
+    public function usuarioConductor()
+    {
+        return $this->hasOne(UsuarioConductores::class, 'telefono', 'telefono');
+    }
 }

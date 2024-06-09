@@ -15,7 +15,9 @@ return new class extends Migration
             $table->integer('cedula')->primary();
             $table->string('cuentaBancaria');
             $table->unsignedBigInteger('licencia');
+            $table->integer('telefono');
 
+            $table->foreign('telefono')->references('telefono')->on('usuarios');
             $table->foreign('licencia')->references('id')->on('catalogoLicencias');
         
             $table->timestamps();
