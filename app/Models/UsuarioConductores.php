@@ -12,6 +12,7 @@ class UsuarioConductores extends Model
     protected $table = 'usuarioConductores'; 
 
     protected $primaryKey = 'cedula';
+    public $incrementing = false;
 
     protected $fillable = [
         'cedula',
