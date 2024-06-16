@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Validator;
 
 class ApiController extends Controller
 {
-    public function crearUsuario(Request $request)
+    public function registerUser(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'telefono' => 'required|integer|unique:usuarios,telefono',
@@ -32,7 +32,7 @@ class ApiController extends Controller
         return response()->json(['message' => 'Usuario creado exitosamente', 'usuario' => $usuario], 201);
     }
 
-    public function crearViaje(Request $request)
+    public function createTravel(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'conductor' => 'required|integer|exists:usuarioConductores,cedula',
@@ -56,4 +56,14 @@ class ApiController extends Controller
 
         return response()->json(['message' => 'Viaje creado exitosamente', 'viaje' => $viaje], 201);
     }
+    public function isRegistered () {}
+    public function isValidCode () {}
+    public function verificarUsuario () {}
+    public function registrarConductor () {}
+    public function registrarvehiculo () {}
+    public function obtenerUsuario () {}
+    public function buscarConductor () {}
+    public function isRegisteredAsDriver () {}
+    public function findSimilarLocations () {}
+
 }
