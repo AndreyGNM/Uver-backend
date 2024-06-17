@@ -35,7 +35,7 @@ class ApiController extends Controller
     public function createTravel(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'conductor' => 'required|integer|exists:usuarioConductores,cedula',
+            'conductor' => 'nullable|integer|exists:usuarioConductores,cedula',
             'pasajero' => 'required|integer|exists:usuarios,telefono',
             'ubicacionPasajero' => 'required|string|max:255',
             'ubicacionDestino' => 'required|string|max:255',

@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('viajes', function (Blueprint $table) {
             
             $table->id();
-            $table->integer('conductor');
+            $table->integer('conductor')->nullable();
             $table->integer('pasajero');
             $table->string('ubicacionPasajero');
             $table->string('ubicacionDestino');
-            $table->boolean('estado');
+            $table->boolean('estado')->default(false);;
 
             $table->foreign('conductor')->references('cedula')->on('usuarioConductores');
             $table->foreign('pasajero')->references('telefono')->on('usuarios');
