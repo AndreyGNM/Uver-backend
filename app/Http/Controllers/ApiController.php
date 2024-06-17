@@ -39,7 +39,6 @@ class ApiController extends Controller
             'pasajero' => 'required|integer|exists:usuarios,telefono',
             'ubicacionPasajero' => 'required|string|max:255',
             'ubicacionDestino' => 'required|string|max:255',
-            'estado' => 'required|boolean',
         ]);
 
         if ($validator->fails()) {
@@ -51,7 +50,7 @@ class ApiController extends Controller
             'pasajero' => $request->pasajero,
             'ubicacionPasajero' => $request->ubicacionPasajero,
             'ubicacionDestino' => $request->ubicacionDestino,
-            'estado' => $request->estado,
+            'estado' => false,
         ]);
 
         return response()->json(['message' => 'Viaje creado exitosamente', 'viaje' => $viaje], 201);
