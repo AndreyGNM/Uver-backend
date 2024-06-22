@@ -64,7 +64,7 @@ class ApiController extends Controller
             return response()->json(['message' => 'Viaje no encontrado'], 404);
         }
 
-        return response()->json(['viaje' => $viaje], 200);
+        return response()->json(['travel' => $viaje], 200);
     }
     
     public function isRegistered () {}
