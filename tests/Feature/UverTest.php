@@ -8,6 +8,7 @@ use Tests\TestCase;
 use App\Models\Usuarios;
 use App\Models\UsuarioConductores;
 use App\Models\CatalogoLicencias;
+use App\Models\Viajes;
 
 class UverTest extends TestCase
 {
@@ -129,5 +130,57 @@ class UverTest extends TestCase
             'ubicacionDestino' => $payload['ubicacionDestino'],
             'estado' => $payload['estado'],
         ]);
+    }
+
+    public function testGetTravel()
+    {
+        $licencia = CatalogoLicencias::create([
+            'licencia' => 'B1'
+        ]);
+
+        $pasajero = Usuarios::create([
+            'telefono' => 12345678,
+            'nombre' => 'Carlos',
+            'apellido' => 'Martinez',
+            'email' => 'carlos.martinez@example.com',
+        ]);
+
+        $usuarioConductor = Usuarios::create([
+            'telefono' => 87654321,
+            'nombre' => 'Carlos',
+            'apellido' => 'Martinez',
+            'email' => 'carlos.martinez@example.com',
+        ]);
+
+        $conductor = UsuarioConductores::create([
+            'cedula' => 987654321,
+            'cuentaBancaria' => '123-456-789',
+            'licencia' => $licencia -> id, 
+            'telefono' => $usuarioConductor -> telefono,
+        ]);
+
+        $viaje = Viajes::create([
+            'conductor' => $conductor->cedula,
+            'pasajero' => $pasajero->telefono,
+            'ubicacionPasajero' => 'Ubicación de Carlos',
+            'ubicacionDestino' => 'Destino de Carlos',
+            'estado' => false,
+        ]);
+
+        // Hacer una solicitud GET para obtener los detalles del viaje
+        $response = $this->getJson("/api/viajes/{$viaje->id}");
+
+        // Verificar la respuesta
+        $response->assertStatus(200)
+                 ->assertJson([
+                     'viaje' => [
+                         'id' => $viaje->id,
+                         'conductor' => $viaje->conductor,
+                         'pasajero' => $viaje->pasajero,
+                         'ubicacionPasajero' => $viaje->ubicacionPasajero,
+                         'ubicacionDestino' => $viaje->ubicacionDestino,
+                         'estado' => $viaje->estado,
+                     ]
+                 ]);
     }
 }

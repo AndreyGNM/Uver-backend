@@ -56,6 +56,18 @@ class ApiController extends Controller
 
         return response()->json(['message' => 'Viaje creado exitosamente', 'viaje' => $viaje], 201);
     }
+
+    public function getTravel($id)
+    {
+        $viaje = Viajes::with(['usuarioConductor', 'usuario'])->find($id);
+
+        if (!$viaje) {
+            return response()->json(['message' => 'Viaje no encontrado'], 404);
+        }
+
+        return response()->json(['viaje' => $viaje], 200);
+    }
+    
     public function isRegistered () {}
     public function isValidCode () {}
     public function verificarUsuario () {}

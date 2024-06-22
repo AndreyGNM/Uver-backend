@@ -68,6 +68,7 @@ Route::post('/viajes', [ApiController::class, 'createTravel']);
 
         // Obtener un viaje - obtenerViaje():
         Route::get('/viaje', [ApiController::class, 'show'])->name('viaje.show');
+        Route::get('/viajes/{id}', [ApiController::class, 'getTravel']);
 
         // Actualizar un viaje  - actualizarViaje(): ademas de ser el Asignarle un conductor al viaje  - asignarConductor():
 
