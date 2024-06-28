@@ -105,7 +105,7 @@ class UverTest extends TestCase
             'pasajero' => $pasajero->telefono,
             'ubicacionPasajero' => 'Ubicacion A',
             'ubicacionDestino' => 'Ubicacion B',
-            'estado' => true,
+            'estado' => false,
         ];
 
         //dd($payload);
